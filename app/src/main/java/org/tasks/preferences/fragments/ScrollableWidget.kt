@@ -210,6 +210,7 @@ class ScrollableWidget : InjectingPreferenceFragment() {
                         SORT_ALPHA -> R.string.SSD_sort_alpha
                         SORT_MODIFIED -> R.string.SSD_sort_modified
                         SORT_CREATED -> R.string.sort_created
+                        SORT_LIST -> R.string.sort_list
                         else -> R.string.SSD_sort_auto
                     }
                 })

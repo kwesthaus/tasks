@@ -35,6 +35,7 @@ data class AdapterSection(
     ): String =
             when {
                 sortMode == SORT_IMPORTANCE -> context.getString(priorityToString())
+                sortMode == SORT_LIST -> "UNKNOWN" // how to get list name
                 value == 0L -> context.getString(when (sortMode) {
                     SORT_DUE -> R.string.no_due_date
                     SORT_START -> R.string.no_start_date

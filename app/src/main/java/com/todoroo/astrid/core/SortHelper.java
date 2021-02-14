@@ -33,6 +33,7 @@ public class SortHelper {
   public static final int SORT_GTASKS = 6;
   public static final int SORT_CALDAV = 7;
   public static final int SORT_START = 8;
+  public static final int SORT_LIST = 9;
 
   public static final long APPLE_EPOCH = 978307200000L; // 1/1/2001 GMT
   @SuppressLint("DefaultLocale")
@@ -111,6 +112,8 @@ public class SortHelper {
       case SORT_CREATED:
         order = Order.desc(Task.CREATION_DATE);
         break;
+      case SORT_LIST:
+        // fallthrough for now, need to figure out how to get list name for given task
       default:
         order =
             Order.asc(
@@ -144,6 +147,8 @@ public class SortHelper {
         return "tasks.modified";
       case SORT_CREATED:
         return "tasks.created";
+      case SORT_LIST:
+        // fallthrough for now, unknown what to do
       default:
         return null;
     }
@@ -181,6 +186,8 @@ public class SortHelper {
       case SORT_CALDAV:
         select = CALDAV_ORDER_COLUMN + " AS sort_manual";
         break;
+      case SORT_LIST:
+        // fallthrough for now, need to figure out how to get list for task at SQL level
       default:
         select ="(CASE WHEN (tasks.dueDate=0) "
                     + // if no due date
@@ -222,6 +229,8 @@ public class SortHelper {
       case SORT_CALDAV:
         order = Order.asc("sort_manual");
         break;
+      case SORT_LIST:
+        // fallthrough for now
       default:
         order = Order.asc("sort_smart");
     }
